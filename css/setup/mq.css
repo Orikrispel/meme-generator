@@ -1,0 +1,11 @@
+/* MOBILE ONLY */
+
+@media (max-width: 768px) {}
+
+/* MEDIUM */
+
+@media (min-width: 768px) {}
+
+/* LARGE */
+
+@media (min-width: 1120px) {}
