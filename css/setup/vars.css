@@ -3,6 +3,7 @@
 	--text-secondary-color: #838486;
 	--dark-background-color: #22252C;
 	--semidark-background-color: #383B42;
-	--gradient-color1: #30BB72;
-	--gradient-color2: #0F99B3;
+	--gradient-color1: #0F99B3;
+	--gradient-color2: #30BB72;
+	--shadow-color: rgba(0, 0, 0, 0.2);
 }

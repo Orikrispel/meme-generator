@@ -2,6 +2,11 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: 'Poppins';
+}
+
+:focus {
+	outline: none;
 }
 
 html {
@@ -37,7 +42,7 @@ a {
 	text-transform: capitalize;
 }
 
-button {
+/* button {
 	background: none;
 	color: inherit;
 	border: none;
@@ -45,4 +50,4 @@ button {
 	font-family: inherit;
 	cursor: pointer;
 	outline: inherit;
-}
+} */

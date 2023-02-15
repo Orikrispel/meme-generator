@@ -8,10 +8,6 @@
 	flex-direction: column;
 }
 
-.flex.space-around {
-	justify-content: space-around;
-}
-
 .flex.space-between {
 	justify-content: space-between;
 }
@@ -25,17 +21,21 @@
 	align-items: center;
 }
 
-.flex.even-columns > * {
+.flex.even-columns>* {
 	width: 100%;
+}
+
+.flex.wrap {
+	flex-wrap: wrap;
 }
 
 /* grid helpers */
 .grid {
 	display: grid;
 }
+
 .grid.center-all {
 	justify-content: center;
-	align-content: center;
 }
 
 /* Cleaning settings */
@@ -45,6 +45,11 @@
 }
 
 /* list helpers */
-.clean.list {
+.clean-list {
 	list-style-type: none;
+}
+
+.clean-input {
+	border: 0;
+
 }

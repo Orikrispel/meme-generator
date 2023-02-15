@@ -7,13 +7,42 @@
 	<title>Meme Generator</title>
 </head>
 
-<body onload="onInit()">
-	<h1>page</h1>
-	<section class="gallery"></section>
-	<section class="editor">
+<body class="main-layout" onload="onInit(), onGalleryInit()">
+
+	<header class="main-layout full">
+		<div class="inner-header flex space-between align-center">
+			<div class="logo">Logo</div>
+			<nav class="nav-bar">
+				<ul class="nav-menu flex space-between clean-list">
+					<li><a href="#" onclick="showGallery()">Gallery</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</header>
+
+	<section class="gallery gallery-layout show" hidden>
+		<div class="search-bar  flex space-between">
+			<input type="text" name="" class="search-box clean-input" placeholder="Search">
+		</div>
+	</section>
+	<section class="editor editor-layout" hidden>
 		<!-- CANVAS -->
 		<div class="canvas-container">
-			<canvas id="my-canvas" height="450" width="450"> </canvas>
+			<canvas id="my-canvas" height="500" width="500"> </canvas>
+		</div>
+		<div class="control-box flex wrap">
+			<input type="text" name="line-text" class="txt-input clean-input" id="line" oninput="onSetLine(this.value)"
+				placeholder="Add your text here">
+			<button class="btn add-line" onclick="onAddLine()">+</button>
+			<button class="btn change-lines" onclick="onSwitchLines()">↑↓</button>
+			<div class="tool-box">
+				<button class="btn btn-color-picker" onclick="document.getElementById('color-picker').click()">🎨</button>
+				<input type="color" id="color-picker" oninput="onChangeColor(this.value)">
+				<button data-operator="+" class="btn increase-font" onclick="onChangeFontSize(this)">A+</button>
+				<button data-operator="-" class="btn decrease-font" onclick="onChangeFontSize(this)">A-</button>
+			</div>
 		</div>
 	</section>
 
@@ -21,8 +50,9 @@
 	<script src="js/service/storage.service.js"></script>
 	<script src="js/service/i18n.service.js"></script>
 	<script src="js/service/util.service.js"></script>
-	<script src="js/service/main.service.js"></script>
-	<script src="js/main.controller.js"></script>
+	<script src="js/service/meme.service.js"></script>
+	<script src="js/meme.controller.js"></script>
+	<script src="js/gallery.controller.js"></script>
 </body>
 
 </html>

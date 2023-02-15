@@ -1,0 +1,9 @@
+header {
+  height: 60px;
+  background: linear-gradient(90deg, var(--gradient-color1), var(--gradient-color2));
+  margin-block: 10px;
+}
+
+header .nav-menu li:not(:last-child)>* {
+  margin-inline-end: 1rem;
+}

@@ -1,0 +1,29 @@
+.gallery {
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--semidark-background-color);
+}
+
+.gallery .search-bar {
+  grid-column: 1 / -1;
+}
+
+.gallery .search-box {
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  background-color: var(--dark-background-color);
+  color: var(--text-primary-color);
+}
+
+.gallery img {
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px var(--shadow-color);
+  transition: .2s ease;
+}
+
+.gallery img:hover {
+  scale: 1.1;
+  box-shadow: 0 6px 12px var(--shadow-color);
+}
