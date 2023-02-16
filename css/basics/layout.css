@@ -19,10 +19,17 @@
 
 /* GALLERY-LAYOUT */
 .gallery-layout.show {
+	display: flex;
+	flex-direction: column;
+}
+
+.memes-gallery-layout {
 	display: grid;
+	gap: 20px;
 	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
 
-/* CARD LAYOUT */
-
-/* MAIN CONTENT */
+.saved-memes-layout.show {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

@@ -1,6 +1,10 @@
 /* MOBILE ONLY */
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+  .gallery .search-box {
+    width: 100%;
+  }
+}
 
 /* SMALL */
 

@@ -1,19 +1,5 @@
 'use strict'
-
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'trump'] },
-{ id: 2, url: 'img/2.jpg', keywords: ['puppies', 'dogs'] },
-{ id: 3, url: 'img/3.jpg', keywords: ['puppies', 'dogs'] },
-{ id: 4, url: 'img/4.jpg', keywords: ['baby', 'babies', 'dogs'] },
-{ id: 5, url: 'img/5.jpg', keywords: ['baby', 'babies'] },
-{ id: 6, url: 'img/6.jpg', keywords: ['funny', 'famous'] },
-{ id: 7, url: 'img/7.jpg', keywords: ['baby', 'babies'] },
-{ id: 8, url: 'img/8.jpg', keywords: ['funny', 'famous'] },
-{ id: 9, url: 'img/9.jpg', keywords: ['funny', 'famous'] },
-{ id: 10, url: 'img/10.jpg', keywords: ['funny', 'famous'] },
-{ id: 11, url: 'img/11.jpg', keywords: ['funny', 'famous'] },
-{ id: 12, url: 'img/12.jpg', keywords: ['funny', 'famous'] }];
+const STORAGE_KEY = 'memesDB'
 var gMeme = {
      selectedImgId: 1,
      selectedLineIdx: -1,
@@ -29,9 +15,7 @@ function getImgById(id) {
      return img.url
 }
 
-function getImgs() {
-     return gImgs
-}
+
 
 function getLinesCount() {
      return gMeme.lines.length
@@ -98,8 +82,6 @@ function isLineClicked(clickedPos) {
                clickedPos.y >= pos.y && clickedPos.y <= pos.y + line.size) {
                isLineClicked = true
                gMeme.selectedLineIdx = index
-          } else {
-               console.log('sorry, not in boundery')
           }
      });
      return (isLineClicked)
@@ -123,11 +105,15 @@ function clearMeme() {
      gMeme.lines = []
 }
 
+function saveMemes() {
+     saveToStorage(STORAGE_KEY, gMeme)
+}
+
 function _createLine(x, y) {
      return {
           txt: 'Add your text here',
           font: 'impact',
-          size: 30,
+          size: 35,
           align: 'center',
           color: 'white',
           strokeColor: 'black',

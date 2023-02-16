@@ -48,13 +48,13 @@
   background-color: #33ABC9;
 }
 
-.change-lines .fa-arrow-right-arrow-left {
-  rotate: 90deg;
-}
-
 .control-box .btn.delete-line {
   color: var(--primary-txt-color);
   background-color: #D92D37;
+}
+
+.change-lines .fa-arrow-right-arrow-left {
+  rotate: 90deg;
 }
 
 .tool-box .font-selector {
@@ -62,9 +62,13 @@
   grid-column: span 3;
 }
 
-
 .colorpick-eyedropper-input-trigger {
   display: none;
+}
+
+.tool-box .btn.save {
+  cursor: not-allowed;
+  background-color: #ffea00;
 }
 
 .control-box #color-picker1,
