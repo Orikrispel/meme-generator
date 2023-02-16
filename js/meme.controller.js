@@ -141,7 +141,7 @@ function downloadImg(elLink) {
 }
 
 function onSaveMeme() {
-     saveMeme()
+     // saveMeme()
 }
 
 // function cleanMark() {

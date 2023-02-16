@@ -33,6 +33,7 @@ img {
 }
 
 a {
+	color: var(--text-primary-color);
 	text-decoration: none;
 	text-transform: capitalize;
 	transition: .2s ease;
