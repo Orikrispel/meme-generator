@@ -6,7 +6,6 @@ let gIsDragging = false
 let gStartPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
-
 function onInit() {
      gElCanvas = document.querySelector('#my-canvas')
      gCtx = gElCanvas.getContext('2d')
@@ -14,7 +13,7 @@ function onInit() {
      resizeCanvas()
 }
 
-function renderMeme(isDownload = false) {
+function renderMeme(isDownload = false, callback = null) {
      const meme = getMeme()
      const img = new Image()
      img.src = getImgById(meme.selectedImgId)
@@ -22,6 +21,7 @@ function renderMeme(isDownload = false) {
           gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
           drawText()
           if (!isDownload) MarkSelectedLine()
+          else callback()
      }
 }
 
@@ -133,26 +133,15 @@ function clearCanvas() {
 }
 
 function downloadImg(elLink) {
-     renderMeme(true);
-     setTimeout(() => {
+     renderMeme(true, function () {
           const imgContent = gElCanvas.toDataURL('image/jpeg')
           elLink.href = imgContent
-     }, 2000);
+     })
 }
 
 function onSaveMeme() {
      // saveMeme()
 }
-
-// function cleanMark() {
-//      const meme = getMeme()
-//      const img = new Image()
-//      img.src = getImgById(meme.selectedImgId)
-//      img.onload = () => {
-//           gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-//           drawText()
-//      }
-// }
 
 // ********* HANDLE TEXT DRAGGING ************* //
 
