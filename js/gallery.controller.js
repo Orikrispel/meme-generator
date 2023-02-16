@@ -18,8 +18,8 @@ function onImgSelect(elImg) {
   const imgId = +elImg.dataset.id
   setImg(imgId)
   showEditor()
+  onInit()
   onAddLine()
-  renderMeme()
 }
 
 function showEditor() {

@@ -3,7 +3,9 @@
 
 <head>
 	<meta charset="UTF-8" />
+	<link rel="icon" href="/img/favicon.ico" type="image/png">
 	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<title>Meme Generator</title>
 </head>
 
@@ -30,25 +32,54 @@
 	<section class="editor editor-layout" hidden>
 		<!-- CANVAS -->
 		<div class="canvas-container">
-			<canvas id="my-canvas" height="500" width="500"> </canvas>
+			<canvas id="my-canvas" height="400" width="400"> </canvas>
 		</div>
 		<div class="control-box flex wrap">
 			<input type="text" name="line-text" class="txt-input clean-input" id="line" oninput="onSetLine(this.value)"
 				placeholder="Add your text here">
-			<button class="btn add-line" onclick="onAddLine()">+</button>
-			<button class="btn change-lines" onclick="onSwitchLines()">↑↓</button>
+			<button class="btn add-line" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+			<button class="btn change-lines" onclick="onSwitchLines()"><i
+					class="fa-solid fa-arrow-right-arrow-left"></i></button>
+			<button class="btn delete-line" onclick="onDeleteLine()"><i class="fa-solid fa-trash"></i></button>
 			<div class="tool-box">
-				<button class="btn btn-color-picker" onclick="document.getElementById('color-picker').click()">🎨</button>
-				<input type="color" id="color-picker" oninput="onChangeColor(this.value)">
-				<button data-operator="+" class="btn increase-font" onclick="onChangeFontSize(this)">A+</button>
-				<button data-operator="-" class="btn decrease-font" onclick="onChangeFontSize(this)">A-</button>
+				<button data-operator="+" class="btn increase-font"
+					onclick="onChangeFontSize(this)"><strong>A⁺</strong></button>
+				<button data-operator="-" class="btn decrease-font"
+					onclick="onChangeFontSize(this)"><strong>A⁻</strong></button>
+				<button data-align="right" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
+						class="fa-solid fa-align-left"></i></button>
+				<button data-align="center" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
+						class="fa-solid fa-align-center"></i></button>
+				<button data-align="left" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
+						class="fa-solid fa-align-right"></i></button>
+				<select class="btn font-selector" onchange="onChangeFont(this.value)">
+					<option value="impact"><strong>Impact</strong></option>
+					<option value="Arial"><strong>Arial</strong></option>
+					<option value="Courier New"><strong>Courier New</strong></option>
+					<option value="Trebuchet MS"><strong>Trebuchet MS</strong></option>
+					<option value="Georgia"><strong>Georgia</strong></option>
+					<option value="Garamond"><strong>Garamond</strong></option>
+				</select>
+				<button class="btn btn-color-picker" onclick="document.getElementById('color-picker1').click()"><i
+						class="fa-solid fa-palette"></i></button>
+				<input type="color" id="color-picker1" oninput="onChangeColor(this.value)">
+				<button class="btn btn-color-picker"
+					onclick="document.getElementById('color-picker2').click()"><strong><u>S</u></strong></button>
+				<input type="color" id="color-picker2" oninput="onChangeStrokeColor(this.value)">
+			</div>
+			<div class="btn-group flex">
+				<button class="btn long-btn share" onclick="onShare()"><i class="fa-solid fa-share-nodes"></i>Share</button>
+				<a class="btn flex center-all long-btn download" onclick="downloadImg(this)" download="my-img.jpg"><i
+						class="fa-solid fa-download"></i>Download</a>
 			</div>
 		</div>
 	</section>
 
 	<script src="lib/hammer.min.js"></script>
 	<script src="js/service/storage.service.js"></script>
-	<script src="js/service/i18n.service.js"></script>
+	<script src="js/sharing-on-facebook.js"></script>
+	<script src="js/upload-from-local.js"></script>
+	<script src=" js/service/i18n.service.js"></script>
 	<script src="js/service/util.service.js"></script>
 	<script src="js/service/meme.service.js"></script>
 	<script src="js/meme.controller.js"></script>
