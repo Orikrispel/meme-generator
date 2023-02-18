@@ -13,11 +13,11 @@
 
 	<header class="main-layout full">
 		<div class="inner-header flex space-between align-center">
-			<div class="logo">Logo</div>
+			<div class="logo">MemeGenerator</div>
 			<nav class="nav-bar">
 				<ul class="nav-menu flex space-between clean-list">
 					<li><a href="#" onclick="showGallery()">Gallery</a></li>
-					<li><a href="#" onclick="showSavedMemes()">Saved memes</a></li>
+					<li><a href="#" onclick="onInitSavedMemes()">Saved memes</a></li>
 					<!-- <li><a href="#">About</a></li> -->
 				</ul>
 			</nav>
@@ -70,7 +70,7 @@
 				<button class="btn btn-color-picker" title="Text outline color"
 					onclick="document.getElementById('color-picker2').click()"><strong><u>S</u></strong></button>
 				<input type="color" id="color-picker2" oninput="onChangeStrokeColor(this.value)">
-				<button class="btn save" onclick="onSaveMeme()" disabled><i class="fa-solid fa-floppy-disk"></i></button>
+				<button class="btn save" onclick="onSaveMeme()"><i class="fa-solid fa-floppy-disk"></i></button>
 			</div>
 			<div class="btn-group flex">
 				<button class="btn long-btn share" onclick="onShare(), onSaveMeme()"><i
@@ -82,8 +82,8 @@
 	</section>
 
 	<section class="saved-memes saved-memes-layout" hidden>
-		<H1>it's quite empty here...</H1>
-
+		<H1 class="empty-title">it's quite empty here...</H1>
+		<div class="gallery-saved-memes"></div>
 	</section>
 
 	<script src="lib/hammer.min.js"></script>

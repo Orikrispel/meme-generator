@@ -1,5 +1,5 @@
 'use strict'
-const STORAGE_KEY = 'memesDB'
+
 var gMeme = {
      selectedImgId: 1,
      selectedLineIdx: -1,
@@ -103,10 +103,6 @@ function adjustTextPos(proportion) {
 function clearMeme() {
      gMeme.selectedLineIdx = -1
      gMeme.lines = []
-}
-
-function saveMemes() {
-     saveToStorage(STORAGE_KEY, gMeme)
 }
 
 function _createLine(x, y) {

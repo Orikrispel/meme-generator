@@ -97,6 +97,7 @@ function onChangeTextAlignment(elBtn) {
      if (!getLinesCount()) return
      changeTextAlign(elBtn.dataset.align)
      renderMeme()
+     // changeMarkSelectedLineAlign(elBtn.dataset.align)
 }
 
 function onChangeFont(font) {
@@ -133,14 +134,11 @@ function clearCanvas() {
 }
 
 function downloadImg(elLink) {
+     onSaveMeme()
      renderMeme(true, function () {
           const imgContent = gElCanvas.toDataURL('image/jpeg')
           elLink.href = imgContent
      })
-}
-
-function onSaveMeme() {
-     // saveMeme()
 }
 
 // ********* HANDLE TEXT DRAGGING ************* //
