@@ -12,10 +12,6 @@
   color: var(--text-primary-color);
 }
 
-.gallery .memes-gallery {
-  gap: 20px;
-}
-
 .gallery img,
 .saved-memes img {
   cursor: pointer;

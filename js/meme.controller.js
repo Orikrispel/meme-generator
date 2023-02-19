@@ -26,13 +26,12 @@ function renderMeme(isDownload = false, callback = null) {
 }
 
 function drawText() {
-     // debugger
      getMeme().lines.forEach(line => {
           gCtx.lineWidth = 2
           gCtx.strokeStyle = line.strokeColor
           gCtx.fillStyle = line.color
           gCtx.font = `${line.size}px ${line.font}`
-          gCtx.textAlign = line.align
+          gCtx.textAlign = 'center'
           gCtx.textBaseline = 'middle'
           gCtx.fillText(line.txt, line.pos.x, line.pos.y)
           gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
@@ -97,7 +96,6 @@ function onChangeTextAlignment(elBtn) {
      if (!getLinesCount()) return
      changeTextAlign(elBtn.dataset.align)
      renderMeme()
-     // changeMarkSelectedLineAlign(elBtn.dataset.align)
 }
 
 function onChangeFont(font) {

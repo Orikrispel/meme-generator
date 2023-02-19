@@ -23,12 +23,13 @@ const gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'trump'] },
 
 function onGalleryInit() {
   renderGallery()
+  renderFilters()
 }
 
 function getImgs() {
   if (!gFilterKeyword) return gImgs
   const imgs = gImgs.filter(img => img.keywords.includes(gFilterKeyword.toLowerCase()))
-
+  console.log(imgs)
   return imgs
 }
 
@@ -36,10 +37,27 @@ function renderGallery() {
   const imgs = getImgs()
   const memesGallery = document.querySelector('.memes-gallery')
   let strHTMLs = ''
-  imgs.forEach(img => {
+  if (imgs.length === 0) {
+    memesGallery.innerHTML = '<h2>No images found.</h2>'
+    return
+  }
+  strHTMLs = imgs.forEach(img => {
     strHTMLs += `<img data-id="${img.id}" class="img-gallery" src="${img.url}" onclick="onImgSelect(this)" />`
     memesGallery.innerHTML = strHTMLs
   })
+}
+
+function renderFilters() {
+
+  const filters = document.querySelector('.filters')
+  let strHTMLs = ''
+  for (const key in gKeywordSearchCountMap) {
+    strHTMLs += `<a onclick="onSearch(ev, this.value)" 
+    style="font-size: ${2 * gKeywordSearchCountMap[key]}px>
+    ${key}</a>`
+  }
+  console.log(strHTMLs)
+  filters.innerHTML = strHTMLs
 }
 
 function onImgSelect(elImg) {

@@ -15,8 +15,6 @@ function getImgById(id) {
      return img.url
 }
 
-
-
 function getLinesCount() {
      return gMeme.lines.length
 }
@@ -29,8 +27,12 @@ function setImg(imgId) {
      gMeme.selectedImgId = imgId
 }
 
+function loadMeme(meme) {
+     gMeme = meme
+}
+
 function setLineTxt(txt) {
-     const line = gMeme.lines[gMeme.selectedLineIdx]
+     const line = getSelectedLine()
      line.txt = txt
 }
 
@@ -40,11 +42,13 @@ function changeFontSize(operator) {
 }
 
 function changeColor(color) {
-     gMeme.lines[gMeme.selectedLineIdx].color = color
+     const line = getSelectedLine()
+     line.color = color
 }
 
 function changeStrokeColor(color) {
-     gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
+     const line = getSelectedLine()
+     line.strokeColor = color
 }
 
 function switchLines() {
@@ -64,15 +68,19 @@ function deleteLine() {
      gMeme.selectedLineIdx = length - 1
 }
 
-function changeTextAlign(str) {
-     const lineIdx = gMeme.selectedLineIdx
-     gMeme.lines[lineIdx].align = str
+function changeTextAlign(align) {
+     const line = getSelectedLine()
+     let dx = line.pos.x - line.txtWidth / 2
+     let x
+     if (align === 'center') x = gElCanvas.width / 2
+     else if (align === 'right') x = gElCanvas.width - (line.txtWidth / 2 + 20)
+     else x = 20 + line.txtWidth / 2
+     line.pos.x = x
 }
 
 function isLineClicked(clickedPos) {
      const lines = gMeme.lines
      let isLineClicked = false
-     // debugger
      lines.forEach((line, index) => {
           const pos = {
                x: line.pos.x - line.txtWidth / 2,
@@ -94,6 +102,7 @@ function moveLine(dx, dy) {
 }
 
 function adjustTextPos(proportion) {
+     if (proportion === Infinity) return
      gMeme.lines.forEach(line => {
           line.pos.x *= proportion
           line.pos.y *= proportion

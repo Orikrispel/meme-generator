@@ -14,7 +14,7 @@
 @import 'components/header.css';
 @import 'components/gallery.css';
 @import 'components/editor.css';
-@import 'components/page-btns.css';
+@import 'components/flash-msg.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';

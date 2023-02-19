@@ -1,10 +1,11 @@
 'use strict'
 
 const STORAGE_KEY = 'memesDB'
-let gSavedImages = []
+let gSavedMemes = []
+let gTimeOut
 
 function onInitSavedMemes() {
-  gSavedImages = (!loadFromStorage(STORAGE_KEY)) ? [] : loadFromStorage(STORAGE_KEY)
+  gSavedMemes = (!loadFromStorage(STORAGE_KEY)) ? [] : loadFromStorage(STORAGE_KEY)
   renderSavedMemes()
   showSavedMemes()
 }
@@ -12,12 +13,12 @@ function onInitSavedMemes() {
 function renderSavedMemes() {
   const savedMemesGallery = document.querySelector('.gallery-saved-memes')
   savedMemesGallery.innerHTML = ''
-  if (gSavedImages.length) {
-    gSavedImages.forEach((image) => {
+  if (gSavedMemes.length) {
+    gSavedMemes.forEach((meme) => {
       const img = new Image()
-      img.src = image
-      img.onclick = onSavedImgSelect
-      console.log(img)
+      img.src = meme.previewImg
+      img.dataset.id = meme.selectedImgId
+      img.setAttribute('onclick', `onSavedMemeSelect(this)`)
       savedMemesGallery.appendChild(img)
       document.querySelector('.empty-title').style.display = 'none'
     })
@@ -25,19 +26,23 @@ function renderSavedMemes() {
   }
 }
 
-function onSavedImgSelect(elImg) {
-  clearMeme()
+function onSavedMemeSelect(elImg) {
   const imgId = +elImg.dataset.id
-  setImg(imgId)
+  const meme = gSavedMemes.find(meme => meme.selectedImgId === imgId)
+  // clearMeme()
+  loadMeme(meme)
   showEditor()
   onInit()
-  onAddLine()
+  renderMeme()
 }
 
 function onSaveMeme() {
+  const meme = getMeme()
   const imgContent = gElCanvas.toDataURL()
-  gSavedImages.push(imgContent)
-  saveToStorage(STORAGE_KEY, gSavedImages)
+  meme.previewImg = imgContent
+  gSavedMemes.push(meme)
+  saveToStorage(STORAGE_KEY, gSavedMemes)
+  flashMsg(`Meme saved!`)
 }
 
 
@@ -45,4 +50,14 @@ function showSavedMemes() {
   document.querySelector('.saved-memes').classList.add('show')
   document.querySelector('.gallery').classList.remove('show')
   document.querySelector('.editor').classList.remove('show')
+}
+
+function flashMsg(msg) {
+  const el = document.querySelector('.user-msg')
+  el.innerText = msg
+  el.classList.add('open')
+  clearTimeout(gTimeOut)
+  gTimeOut = setTimeout(() => {
+    el.classList.remove('open')
+  }, 3000)
 }

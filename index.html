@@ -13,11 +13,11 @@
 
 	<header class="main-layout full">
 		<div class="inner-header flex space-between align-center">
-			<div class="logo">MemeGenerator</div>
+			<a class="logo" href="#" onclick="showGallery()">MemeGenerator</a>
 			<nav class="nav-bar">
 				<ul class="nav-menu flex space-between clean-list">
 					<li><a href="#" onclick="showGallery()">Gallery</a></li>
-					<li><a href="#" onclick="onInitSavedMemes()">Saved memes</a></li>
+					<li><a href="#" onclick="onInitSavedMemes()">Memes</a></li>
 					<!-- <li><a href="#">About</a></li> -->
 				</ul>
 			</nav>
@@ -26,9 +26,10 @@
 	</header>
 
 	<section class="gallery gallery-layout show" hidden>
-		<div class="search-bar  flex space-between">
+		<div class="search-bar flex space-between">
 			<input type=" text" name="search-box" id="search-box" class="search-box clean-input"
 				oninput="onSearch(event, this.value)" placeholder="Search">
+			<div class="filters flex"></div>
 		</div>
 		<div class="memes-gallery memes-gallery-layout"></div>
 	</section>
@@ -50,11 +51,11 @@
 					onclick="onChangeFontSize(this)"><strong>A⁺</strong></button>
 				<button data-operator="-" class="btn decrease-font"
 					onclick="onChangeFontSize(this)"><strong>A⁻</strong></button>
-				<button data-align="right" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
+				<button data-align="left" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
 						class="fa-solid fa-align-left"></i></button>
 				<button data-align="center" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
 						class="fa-solid fa-align-center"></i></button>
-				<button data-align="left" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
+				<button data-align="right" class="btn align-line" onclick="onChangeTextAlignment(this)"><i
 						class="fa-solid fa-align-right"></i></button>
 				<select class="btn font-selector" onchange="onChangeFont(this.value)">
 					<option value="impact"><strong>Impact</strong></option>
@@ -75,8 +76,8 @@
 			<div class="btn-group flex">
 				<button class="btn long-btn share" onclick="onShare(), onSaveMeme()"><i
 						class="fa-solid fa-share-nodes"></i>Share</button>
-				<a class="btn flex center-all long-btn download" onclick="downloadImg(this), onSaveMeme()"
-					download="my-img.jpg"><i class="fa-solid fa-download"></i>Download</a>
+				<a class="btn flex center-all long-btn download" onclick="downloadImg(this)" download="my-img.jpg"><i
+						class="fa-solid fa-download"></i>Download</a>
 			</div>
 		</div>
 	</section>
@@ -86,9 +87,11 @@
 		<div class="gallery-saved-memes"></div>
 	</section>
 
+	<div class="user-msg"></div>
+
 	<script src="lib/hammer.min.js"></script>
 	<script src="js/service/storage.service.js"></script>
-	<script src="js/sharing-on-facebook.js"></script>
+	<script src="js/share-service.js"></script>
 	<script src="js/upload-from-local.js"></script>
 	<script src=" js/service/i18n.service.js"></script>
 	<script src="js/service/util.service.js"></script>
