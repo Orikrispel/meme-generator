@@ -4,6 +4,7 @@ let gElCanvas
 let gCtx
 let gIsDragging = false
 let gStartPos
+let gStickerGroup = 1
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
@@ -105,6 +106,26 @@ function onChangeFont(font) {
      renderMeme()
 }
 
+function onAddSticker(sticker) {
+     let x = gElCanvas.width / 2
+     let y = gElCanvas.height / 2
+     addSticker(x, y, sticker)
+     renderMeme()
+     MarkSelectedLine()
+}
+
+function onSlideCarousel(dir) {
+     let stickerGroup = document.querySelector(`.group${gStickerGroup}`)
+     stickerGroup.classList.add('hide')
+     if (dir === 'left') {
+          gStickerGroup = (gStickerGroup + 1 > 3) ? 1 : gStickerGroup + 1
+     } else {
+          gStickerGroup = (gStickerGroup - 1 < 1) ? 3 : gStickerGroup - 1
+     }
+     let nextStickerGroup = document.querySelector(`.group${gStickerGroup}`)
+     nextStickerGroup.classList.remove('hide')
+}
+
 function MarkSelectedLine() {
      const line = getSelectedLine()
      if (!line) return
@@ -121,12 +142,6 @@ function MarkSelectedLine() {
      gCtx.closePath()
 }
 
-function showGallery() {
-     document.querySelector('.gallery').classList.add('show')
-     document.querySelector('.saved-memes').classList.remove('show')
-     document.querySelector('.editor').classList.remove('show')
-}
-
 function clearCanvas() {
      gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
@@ -137,6 +152,12 @@ function downloadImg(elLink) {
           const imgContent = gElCanvas.toDataURL('image/jpeg')
           elLink.href = imgContent
      })
+}
+
+function showGallery() {
+     document.querySelector('.gallery').classList.add('show')
+     document.querySelector('.saved-memes').classList.remove('show')
+     document.querySelector('.editor').classList.remove('show')
 }
 
 // ********* HANDLE TEXT DRAGGING ************* //

@@ -6,10 +6,18 @@
 }
 
 .gallery .search-box {
+  width: calc(100% - 400px);
+  max-width: 400px;
   border-radius: 20px;
   padding: 0.4rem 1rem;
   background-color: var(--dark-background-color);
   color: var(--text-primary-color);
+}
+
+.gallery .memes-gallery {
+  max-height: 50vh;
+  overflow-y: scroll;
+  padding-right: 20px;
 }
 
 .gallery img,
@@ -24,4 +32,23 @@
 .gallery img:hover .saved-memes img:hover {
   scale: 1.1;
   box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.gallery .keywords {
+  gap: 2em;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gradient-color1), var(--gradient-color2));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--dark-background-color);
+  border-radius: 10px;
 }

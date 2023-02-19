@@ -1,10 +1,12 @@
 'use strict'
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 4, 'baby': 8, 'fight': 5, 'famous': 10 }
 var gFilterKeyword
+const STORAGE_KEY_KEYWORDS = 'KeywordSearchCountMapDB'
 const gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'trump'] },
 { id: 2, url: 'img/2.jpg', keywords: ['puppies', 'dogs'] },
 { id: 3, url: 'img/3.jpg', keywords: ['puppies', 'dogs'] },
-{ id: 4, url: 'img/4.jpg', keywords: ['baby', 'babies', 'dogs'] },
+{ id: 4, url: 'img/4.jpg', keywords: ['babies', 'cat'] },
 { id: 5, url: 'img/5.jpg', keywords: ['baby', 'babies'] },
 { id: 6, url: 'img/6.jpg', keywords: ['funny', 'famous'] },
 { id: 7, url: 'img/7.jpg', keywords: ['baby', 'babies'] },
@@ -22,14 +24,14 @@ const gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'trump'] },
 ];
 
 function onGalleryInit() {
+  if (loadFromStorage(STORAGE_KEY_KEYWORDS)) gKeywordSearchCountMap = loadFromStorage(STORAGE_KEY_KEYWORDS)
   renderGallery()
   renderFilters()
 }
 
 function getImgs() {
   if (!gFilterKeyword) return gImgs
-  const imgs = gImgs.filter(img => img.keywords.includes(gFilterKeyword.toLowerCase()))
-  console.log(imgs)
+  const imgs = gImgs.filter(img => img.keywords.find(keyword => keyword.includes(gFilterKeyword.toLowerCase())))
   return imgs
 }
 
@@ -48,16 +50,15 @@ function renderGallery() {
 }
 
 function renderFilters() {
-
-  const filters = document.querySelector('.filters')
+  const filters = document.querySelector('.keywords')
   let strHTMLs = ''
   for (const key in gKeywordSearchCountMap) {
-    strHTMLs += `<a onclick="onSearch(ev, this.value)" 
-    style="font-size: ${2 * gKeywordSearchCountMap[key]}px>
-    ${key}</a>`
+    strHTMLs += `<li><a onclick="onKeywordFilter(this.innerText)" 
+    style="font-size: ${2 * gKeywordSearchCountMap[key]}px">
+    ${key}</a></li>`
   }
-  console.log(strHTMLs)
   filters.innerHTML = strHTMLs
+  saveToStorage(STORAGE_KEY_KEYWORDS, gKeywordSearchCountMap)
 }
 
 function onImgSelect(elImg) {
@@ -78,5 +79,14 @@ function showEditor() {
 function onSearch(ev, val) {
   gFilterKeyword = val
   renderGallery()
+}
+
+function onKeywordFilter(keyword) {
+  keyword = keyword.toLowerCase()
+  gFilterKeyword = keyword
+  gKeywordSearchCountMap[keyword]++
+  console.log(gKeywordSearchCountMap)
+  renderGallery()
+  renderFilters()
 }
 

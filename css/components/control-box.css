@@ -79,6 +79,43 @@
   width: 0;
 }
 
+.control-box .sticker-carousel {
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: var(--text-primary-color);
+  font-size: 2.5rem;
+  color: var(--dark-background-color)
+}
+
+.control-box .sticker-group {
+  flex-grow: 1;
+  justify-content: space-evenly;
+  gap: 0.5em;
+}
+
+.control-box .sticker-group.hide {
+  display: none;
+}
+
+.control-box .sticker-group li {
+  transition: .2s ease-in;
+}
+
+.control-box .sticker-group li:hover {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.fa-solid:is(.fa-angle-right, .fa-angle-left) {
+  cursor: pointer;
+  font-size: 2rem;
+  transition: 0.2s ease-in;
+}
+
+.fa-solid:is(.fa-angle-right:hover, .fa-angle-left:hover) {
+  scale: 1.2;
+}
+
 .control-box .btn-group {
   flex-wrap: wrap;
   width: 100%;

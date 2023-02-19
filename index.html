@@ -9,7 +9,7 @@
 	<title>Meme Generator</title>
 </head>
 
-<body class="main-layout" onload="onInit(), onGalleryInit()">
+<body class="main-layout" onload="onInit(); onGalleryInit()">
 
 	<header class="main-layout full">
 		<div class="inner-header flex space-between align-center">
@@ -29,7 +29,9 @@
 		<div class="search-bar flex space-between">
 			<input type=" text" name="search-box" id="search-box" class="search-box clean-input"
 				oninput="onSearch(event, this.value)" placeholder="Search">
-			<div class="filters flex"></div>
+			<div class="filters"></div>
+			<ul class="keywords flex clean-list">
+			</ul>
 		</div>
 		<div class="memes-gallery memes-gallery-layout"></div>
 	</section>
@@ -73,7 +75,26 @@
 				<input type="color" id="color-picker2" oninput="onChangeStrokeColor(this.value)">
 				<button class="btn save" onclick="onSaveMeme()"><i class="fa-solid fa-floppy-disk"></i></button>
 			</div>
-			<div class="btn-group flex">
+			<div class="sticker-carousel flex align-center">
+				<i class="fa-solid fa-angle-left" onclick="onSlideCarousel('left')"></i>
+				<ul class="sticker-group group1 flex clean-list space-between">
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😀</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😍</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😎</a></li>
+				</ul>
+				<ul class="sticker-group group2 flex clean-list space-between hide">
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😤</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😱</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😰</a></li>
+				</ul>
+				<ul class="sticker-group group3 flex clean-list space-between hide">
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😵</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">😲</a></li>
+					<li><a class="sticker" onclick="onAddSticker(this.innerText)">🖐</a></li>
+				</ul>
+				<i class="fa-solid fa-angle-right" onclick="onSlideCarousel('right')"></i>
+			</div>
+			<div class=" btn-group flex">
 				<button class="btn long-btn share" onclick="onShare(), onSaveMeme()"><i
 						class="fa-solid fa-share-nodes"></i>Share</button>
 				<a class="btn flex center-all long-btn download" onclick="downloadImg(this)" download="my-img.jpg"><i

@@ -60,6 +60,11 @@ function addLine(x, y) {
      gMeme.lines.push(newLine)
      gMeme.selectedLineIdx++
 }
+function addSticker(x, y, sticker) {
+     const newSticker = _createLine(x, y, sticker, 50)
+     gMeme.lines.push(newSticker)
+     gMeme.selectedLineIdx++
+}
 
 function deleteLine() {
      const lineIdx = gMeme.selectedLineIdx
@@ -114,11 +119,11 @@ function clearMeme() {
      gMeme.lines = []
 }
 
-function _createLine(x, y) {
+function _createLine(x, y, txt = 'Add your text here', size = 35) {
      return {
-          txt: 'Add your text here',
+          txt,
           font: 'impact',
-          size: 35,
+          size,
           align: 'center',
           color: 'white',
           strokeColor: 'black',
