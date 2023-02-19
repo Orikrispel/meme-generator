@@ -7,12 +7,14 @@
 
 html {
 	scroll-behavior: smooth;
+
 }
 
 body {
 	color: var(--text-primary-color);
 	background-color: var(--dark-background-color);
 	line-height: 1.5;
+	height: 100vh;
 }
 
 p {
