@@ -1,6 +1,9 @@
 /* MOBILE ONLY */
 
 @media (max-width: 768px) {
+  .gallery .memes-gallery {
+    max-height: 80vh;
+  }
 
   .gallery .search-bar {
     flex-direction: column;
